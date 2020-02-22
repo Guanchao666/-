@@ -1,0 +1,56 @@
+#defene MaxSize = 50
+typedef struct {
+	ElemeType data[MaxSize];  //数组静态分配
+	int length;
+
+};
+SqList
+//
+#defene MaxSize = 50
+typedef struct {
+	ElemeType *data;  //数组动态分配，需要申请空间
+	int length;
+
+};
+SqList
+
+//C动态分配语句
+L.data=(ElemeType*)malloc(sizeof(ElemType)*InitSize)
+//C++动态分配语句
+       L.data=new EleType[InitSize]
+
+//插入语句
+bool ListInsert(SqList &L, int i, ElemType e) {
+	if(i<1 || i>L.length+1)
+		return false;
+	if(L.length>=MaxSize)
+		return false;
+	for(int j=L.length; j>=i; j--)
+		L.data[j]=L.data[j-1];
+	L.data[i-1]=e;
+	L.length++;
+	return true;
+
+}
+
+ListInsert(L,3,'e');
+
+//删除语句
+bool ListDelete(SqList &L, int i, ElemType &e) {
+	if(i<1 || i>L.length)
+		return false;
+	e=L.data[i-1];
+	for(int j=i; j<L.length; j++)
+		L.data[j-1]=L.data[j];
+	L.length--
+	return true;
+}
+
+//查找操作
+int LicateElem(SqList L, ElemType e) {
+	int i;
+	for(i=0; i<L.length; i++)
+		if(L.data[i]==e)
+			return i+1;//返回当前顺序表的下标（i表示数组下标 ）
+	return 0；
+}
