@@ -1,0 +1,41 @@
+#include <stdio.h>
+struct Node {
+	int a;
+	struct Node *pNext;
+};
+//链表头尾指针
+struct Node* g_Head = NULL;  //为空时说明链表无值
+struct Node* g_End = NULL;
+//创建链表（在链表中增加一个数据）  ##尾添加
+void AddNodeToList(int a/* 节点数据通过参数传入*/) {
+	// 创建一个节点      ↓↓↓强制类型转换
+	struct Node* pTemp = (struct Node*)malloc(sizeof(struct Node));
+
+	                     //节点数据进行赋值
+	                     pTemp->a = a;
+	pTemp->pNext = NULL;  //至关重要
+
+	//链接
+	if(g_Head==NULL || g_End == NULL) {
+		//链表没有东西，空链表，即是头，也是尾 
+		g_Head==pTemp;
+//		g_End==pTemp;
+	} else {//不为空给，往尾巴上添加 
+		g_End->pNext = pTemp;
+		//尾巴后移，尾巴一直要指向最后一个节点 
+//		g_End = pTemp;
+
+	}
+	g_End = pTemp;//if/else均有，即必执行，可放外面简化代码
+}
+
+
+int main() {
+	AddNodeToList(1);
+	AddNodeToList(2);
+	AddNodeToList(3);
+	AddNodeToList(4);
+	AddNodeToList(5);
+
+	return 0;
+}
