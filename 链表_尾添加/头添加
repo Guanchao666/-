@@ -7,22 +7,22 @@ struct Node {
 struct Node* g_Head = NULL;  //为空时说明链表无值
 struct Node* g_End = NULL;
 //创建链表（在链表中增加一个数据）  ##尾添加
-void AddNodeToList(int a/* 节点数据通过参数传入*/) {
+void AddNodeToList(int a/* 节点数据通过参数传入*/) { //尾添加
 	// 创建一个节点      ↓↓↓强制类型转换
 	struct Node* pTemp = (struct Node*)malloc(sizeof(struct Node));
 
-	                     //节点数据进行赋值
-	                     pTemp->a = a;
+	//节点数据进行赋值
+	pTemp->a = a;
 	pTemp->pNext = NULL;  //至关重要
 
 	//链接
 	if(g_Head==NULL || g_End == NULL) {
-		//链表没有东西，空链表，即是头，也是尾 
+		//链表没有东西，空链表，即是头，也是尾
 		g_Head==pTemp;
 //		g_End==pTemp;
-	} else {//不为空给，往尾巴上添加 
+	} else {//不为空给，往尾巴上添加
 		g_End->pNext = pTemp;
-		//尾巴后移，尾巴一直要指向最后一个节点 
+		//尾巴后移，尾巴一直要指向最后一个节点
 //		g_End = pTemp;
 
 	}
@@ -38,4 +38,24 @@ int main() {
 	AddNodeToList(5);
 
 	return 0;
+}
+
+void AddListHead(int a) { //头添加
+	struct Node* pTemp = (struct Node*)malloc(sizeof(struct Node));
+
+	//节点数据赋值
+	pTemp->a = a;
+	pTemp->pNext = NULL;
+
+	//接在链表上
+	if(NULL == g_pHead) {
+		//链表为空，新节点即是头也是尾巴
+		g_pHead = pTemp;
+		g_pEnd = pTemp;
+	} else {
+		//新节点的下一个指向头
+		pTemp->pNext = g_pHead;
+		//新节点就是头了
+		g_hHead = pTemp;
+	}
 }
