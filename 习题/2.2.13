@@ -1,0 +1,36 @@
+#include<stdio.h>
+#define Initsize 10
+typedef struct {
+	int *data;
+	int Length;
+	int Maxsize;
+} SqList;
+
+int main() {
+	int i;
+	SqList L;
+	InitList(&L);
+	for(i=0; i<Initsize; i++) {
+		L.data[i]=i;
+		L.Length++;
+	}
+	del_x_l(&L);
+	for(i=0; i<(*L).Length; i++)
+		printf("%d==\n",(*L).data[i]);  //检验成果 
+}
+
+void InitList(SqList *L) {
+	(*L).data = (int *)malloc(sizeof(int)*Initsize);
+	(*L).Length = 0;
+	(*L).Maxsize=Initsize;
+}
+
+void del_x_l(SqList *L) {
+	int k=0,i;
+	for(i=0; i<(*L).Length; i++)
+		if((*L).data[i]!=2) {
+			(*L).data[k]=(*L).data[i];
+			k++;
+		}
+	(*L).Length=k;
+}
